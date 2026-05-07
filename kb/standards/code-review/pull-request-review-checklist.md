@@ -2,11 +2,11 @@
 id: std.code-review.pull-request-checklist
 schema_version: 1
 type: standard
-status: draft
+status: stable
 created: 2026-05-07
 updated: 2026-05-07
 
-title_vi: "Checklist review Pull Request"
+title_vi: "Checklist review Pull Request (PR)"
 title_en: "Pull Request review checklist"
 
 tags:
@@ -16,7 +16,8 @@ tags:
 aliases:
   - pr checklist
   - review checklist
-related: []
+related:
+  - snp.git.interactive-rebase-squash
 ---
 
 ## Vietnamese
@@ -25,6 +26,7 @@ related: []
 
 - Ưu tiên review **logic/edge cases/rủi ro** trước; style đứng sau.
 - PR cần mô tả rõ: **mục tiêu**, **phạm vi**, **rủi ro**, **cách test**, **kế hoạch rollout/rollback**.
+- Nếu PR lớn/khó review: yêu cầu **tách nhỏ** (hoặc chia thành nhiều commits có ý nghĩa).
 - Chỉ approve khi thay đổi **đúng**, **test đủ**, và **đọc/maintain được**.
 
 ### Context/Why
@@ -36,6 +38,7 @@ related: []
 **1) Hiểu đúng mục tiêu & phạm vi**
 - PR có nêu rõ *problem statement* và “done criteria” không?
 - Phạm vi có “phình” không (scope creep)? Có tách PR được không?
+- PR có đủ nhỏ để review hiệu quả không? Nếu không: đề xuất tách.
 
 **2) Correctness & edge cases**
 - Xử lý lỗi rõ ràng (error paths), thông điệp lỗi hữu ích.
@@ -46,6 +49,10 @@ related: []
 - Có test cho đường đi chính và edge cases quan trọng.
 - Test fail phải dễ debug (assert rõ, setup gọn).
 - Nếu sửa bug: ưu tiên có test “repro” trước/sau.
+
+**3.1) Commit history (khi dự án ưu tiên lịch sử gọn)**
+- Commits có ý nghĩa, message rõ; tránh commit “fix typo” lặp.
+- Nếu cần squash/fixup trước khi merge: xem `id: snp.git.interactive-rebase-squash`.
 
 **4) Security & secrets**
 - Không log/commit secrets.
@@ -83,7 +90,8 @@ related: []
 
 ### References
 
-- (Optional) Link tới tiêu chuẩn nội bộ hoặc guide về testing/security.
+- https://google.github.io/eng-practices/review/
+- https://docs.github.com/en/pull-requests
 
 ---
 
@@ -93,6 +101,7 @@ related: []
 
 - Review **logic/edge cases/risk** first; style comes later.
 - A PR should clearly state: **goal**, **scope**, **risk**, **how to test**, **rollout/rollback**.
+- If the PR is large or hard to review: ask to **split it** (or structure it into meaningful commits).
 - Only approve when the change is **correct**, **well-tested**, and **maintainable**.
 
 ### Context/Why
@@ -104,6 +113,7 @@ related: []
 **1) Confirm goal & scope**
 - Does the PR include a clear problem statement and “done criteria”?
 - Is scope creeping? Can it be split?
+- Is the PR small enough to review effectively? If not: ask to split.
 
 **2) Correctness & edge cases**
 - Clear error handling (error paths) and useful error messages.
@@ -114,6 +124,10 @@ related: []
 - Tests cover the happy path and key edge cases.
 - Tests are debuggable (clear assertions, minimal setup).
 - For bug fixes: prefer a repro test that fails before and passes after.
+
+**3.1) Commit history (when your project prefers a clean history)**
+- Commits are meaningful with clear messages; avoid repeated “fix typo” noise.
+- If you want to squash/fixup before merging: see `id: snp.git.interactive-rebase-squash`.
 
 **4) Security & secrets**
 - No secrets in logs or commits.
@@ -151,4 +165,5 @@ related: []
 
 ### References
 
-- (Optional) Link to internal standards or testing/security guides.
+- https://google.github.io/eng-practices/review/
+- https://docs.github.com/en/pull-requests
