@@ -1,0 +1,50 @@
+name: New KB item request
+description: Propose a new standard/snippet for the knowledge base
+title: "[KB] <short title>"
+labels:
+  - kb
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Item type
+      options:
+        - standard
+        - snippet
+    validations:
+      required: true
+
+  - type: input
+    id: suggested_id
+    attributes:
+      label: Suggested id (optional)
+      description: Stable identifier (recommended), e.g. std.code-review.checklist
+      placeholder: "std.<domain>.<topic> or snp.<tool>.<topic>"
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the need/context and expected outcome.
+      placeholder: "We keep repeating X in reviews…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: guidance
+    attributes:
+      label: Proposed guidance (rough outline is fine)
+      description: Bullet points are ok. Include do/don't and examples if possible.
+
+  - type: input
+    id: tags
+    attributes:
+      label: Suggested tags
+      description: Comma-separated keywords (kebab-case preferred)
+      placeholder: "code-review, pull-request, security"
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References (optional)
+      description: Links to internal docs, official docs, or example PRs.
